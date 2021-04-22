@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:wallpaper/screens/Wallpaper/Wallpaper.dart';
 import '../../../data.dart';
 
 class BestOfTheMonth extends StatelessWidget {
   const BestOfTheMonth({
     Key? key,
   }) : super(key: key);
+
+  void handleWallpaperClick(BuildContext context, int index) {
+    Navigator.of(context).pushNamed(Wallpaper.routeName, arguments: {
+      'category': 'bestWallpapers',
+      'index': index,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +37,17 @@ class BestOfTheMonth extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 18),
             scrollDirection: Axis.horizontal,
             itemBuilder: (ctx, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Hero(
-                  tag: wallpapers['bestWallpapers']![index],
-                  child: Image.asset(
-                    wallpapers['bestWallpapers']![index],
-                    height: 200,
-                    fit: BoxFit.fitHeight,
+              return GestureDetector(
+                onTap: () => handleWallpaperClick(ctx, index),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Hero(
+                    tag: wallpapers['bestWallpapers']![index],
+                    child: Image.asset(
+                      wallpapers['bestWallpapers']![index],
+                      height: 200,
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               );

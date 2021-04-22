@@ -6,6 +6,7 @@ class WallpapersByCategory extends StatelessWidget {
   static const String routeName = '/wallpaper-by-category';
 
   const WallpapersByCategory({Key? key}) : super(key: key);
+
   void handleWallpaperClick(BuildContext context, int index) {
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;
